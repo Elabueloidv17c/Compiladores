@@ -13,8 +13,6 @@ using System.Resources;
 using System.Diagnostics;
 using System.Management;
 
-//Leer patron de máquina de estados
-
 namespace CompilerUI
 {
     public partial class CompilerUI : Form
@@ -25,6 +23,10 @@ namespace CompilerUI
         dynamic         m_compilerDLL;
         bool            m_isDllLoaded;
         String          m_dllPath;
+
+        String[][]      m_tokens;
+        String[]        m_errors;
+        String          m_compilationState;
 
         public CompilerUI()
         {
@@ -89,7 +91,17 @@ namespace CompilerUI
         {
             if (m_isDllLoaded)
             {
-                m_compilerDLL.CompileProgram(Editor.Text);
+                ParseTokenArray(m_compilerDLL.CompileProgram(Editor.Text));
+
+                for (int i = 0; i < m_tokens.Count(); i++)
+                {
+                    dataGridView1.Rows.Add(m_tokens[i]);
+                }
+
+                for (int i = 0; i < m_errors.Count(); i++)
+                {
+                    textBox2.Text += m_errors[i] + System.Environment.NewLine;
+                }
             }
             else
             {
@@ -207,7 +219,7 @@ namespace CompilerUI
                 proccesFullPath = Up.FullName;
             }
 
-            m_dllPath = proccesFullPath + "\\Compiler\\" + dllArchitecture + "\\Exe\\Debug\\" + dllFilename;
+            m_dllPath = proccesFullPath + "\\CompilerUI\\" + dllArchitecture + "\\Exe\\Debug\\" + dllFilename;
 
             var DLL = Assembly.UnsafeLoadFrom(m_dllPath);
 
@@ -215,16 +227,51 @@ namespace CompilerUI
             m_compilerDLL = Activator.CreateInstance(DLLType);
             m_isDllLoaded = m_compilerDLL != null;
 
-            if (m_isDllLoaded)
-            {
-                MessageBox.Show("Compiled correctly", dllArchitecture + " dll", MessageBoxButtons.OK);
-            }
-            else
+            if (!m_isDllLoaded)
             {
                 MessageBox.Show("Not compiled correctly", dllArchitecture + " dll", MessageBoxButtons.OK);
             }
 
             return m_isDllLoaded;
+        }
+
+        private void ParseTokenArray(String[] tokens)
+        {
+            int index = 0;
+            while (tokens[index] != "@")
+            {
+                index++;
+            }
+
+            m_compilationState = tokens[0];
+
+            m_errors = new String[tokens.Count() - index - 1];
+            m_tokens = new String[index - 1][];
+
+            for (int i = 0; i < m_tokens.Count(); i++)
+            {
+                String[] token = tokens[i + 1].Split('#');
+                m_tokens[i] = token;
+            }
+
+            for(int i = 0; i < m_errors.Count(); i++)
+            {
+                m_errors[i] = tokens[++index];
+            }
+
+            dataGridView1.Rows.Clear();
+            dataGridView1.Refresh();
+            textBox2.Text = m_compilationState + System.Environment.NewLine;
+        }
+
+        private void OptionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

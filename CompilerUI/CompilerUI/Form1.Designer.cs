@@ -70,6 +70,9 @@
             // 
             // Editor
             // 
+            this.Editor.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.Editor.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Editor.ForeColor = System.Drawing.SystemColors.Window;
             this.Editor.Location = new System.Drawing.Point(12, 38);
             this.Editor.Multiline = true;
             this.Editor.Name = "Editor";
@@ -78,6 +81,9 @@
             // 
             // textBox2
             // 
+            this.textBox2.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.textBox2.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.ForeColor = System.Drawing.SystemColors.Window;
             this.textBox2.Location = new System.Drawing.Point(12, 366);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
@@ -95,6 +101,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(247, 324);
             this.dataGridView1.TabIndex = 2;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellContentClick);
             // 
             // Token
             // 
@@ -300,6 +307,7 @@
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
             this.optionsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.optionsToolStripMenuItem.Text = "Options";
+            this.optionsToolStripMenuItem.Click += new System.EventHandler(this.OptionsToolStripMenuItem_Click);
             // 
             // lexicalAnalysisToolStripMenuItem
             // 
