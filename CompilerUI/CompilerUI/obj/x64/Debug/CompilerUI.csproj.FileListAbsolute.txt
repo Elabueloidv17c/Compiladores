@@ -1,0 +1,10 @@
+D:\UAD\6\Compiladores\CompilerUI\CompilerUI\bin\x64\Debug\CompilerUI.exe.config
+D:\UAD\6\Compiladores\CompilerUI\CompilerUI\bin\x64\Debug\CompilerUI.exe
+D:\UAD\6\Compiladores\CompilerUI\CompilerUI\bin\x64\Debug\CompilerUI.pdb
+D:\UAD\6\Compiladores\CompilerUI\CompilerUI\obj\x64\Debug\CompilerUI.csprojAssemblyReference.cache
+D:\UAD\6\Compiladores\CompilerUI\CompilerUI\obj\x64\Debug\CompilerUI.CompilerUI.resources
+D:\UAD\6\Compiladores\CompilerUI\CompilerUI\obj\x64\Debug\CompilerUI.Properties.Resources.resources
+D:\UAD\6\Compiladores\CompilerUI\CompilerUI\obj\x64\Debug\CompilerUI.csproj.GenerateResource.cache
+D:\UAD\6\Compiladores\CompilerUI\CompilerUI\obj\x64\Debug\CompilerUI.csproj.CoreCompileInputs.cache
+D:\UAD\6\Compiladores\CompilerUI\CompilerUI\obj\x64\Debug\CompilerUI.exe
+D:\UAD\6\Compiladores\CompilerUI\CompilerUI\obj\x64\Debug\CompilerUI.pdb
