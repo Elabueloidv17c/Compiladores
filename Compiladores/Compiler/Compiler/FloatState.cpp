@@ -31,11 +31,9 @@ void Compiler::FloatState::Read(const char* source, LexAnalyzer& analyzer)
 		{
 			analyzer.AddToken(m_buffer, Compiler::TokenType::Float, analyzer.GetCurrentLine());
 		}
-		else if(source[currentChar - 1] != '.')
-		{
-			analyzer.AddError(ErrorPhase::Lexic, analyzer.GetCurrentLine(), _INVALID_FLOAT,
-			msclr::interop::marshal_as<String^>(m_buffer));
-		}
+
+		analyzer.AddError(ErrorPhase::Lexic, analyzer.GetCurrentLine(), _INVALID_FLOAT,
+		msclr::interop::marshal_as<String^>(m_buffer));
 
 		analyzer.SetState(new BeginState());
 	}
