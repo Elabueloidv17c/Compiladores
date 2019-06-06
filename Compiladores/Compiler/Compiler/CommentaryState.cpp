@@ -12,10 +12,14 @@ void Compiler::CommentaryState::Read(const char* source, LexAnalyzer& analyzer)
 		m_buffer += source[currentChar];
 		analyzer.IncCurrentChar();
 
+		if (source[currentChar] == '\r')
+		{
+			analyzer.IncCurrentLine();
+		}
 		if (source[currentChar + 1] == '\0' || source[currentChar] == '\0')
 		{
 			//Error comentario no cerrado
-			analyzer.AddError(ErrorPhase::Lexic, analyzer.GetCurrentLine(), _COMMENT_NOT_CLOSED, 
+			analyzer.AddError(ErrorPhase::Lexic, m_startLine, _COMMENT_NOT_CLOSED, 
 			msclr::interop::marshal_as<String^>(m_buffer));
 			analyzer.SetState(new BeginState());
 		}
@@ -45,6 +49,7 @@ Compiler::CommentaryState::CommentaryState(const char* source, LexAnalyzer& anal
 
 	m_buffer += source[analyzer.GetCurrentChar()];
 	analyzer.IncCurrentChar();
+	m_startLine = analyzer.GetCurrentLine();
 }
 
 

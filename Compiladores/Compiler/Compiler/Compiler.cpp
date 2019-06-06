@@ -6,7 +6,6 @@ Compiler::Manager::Manager()
 {
 	m_errorHandler = gcnew ErrorModule();
 	m_lexAnalyzer = new LexAnalyzer(m_errorHandler);
-	m_tokens = new std::vector<Token>;
 }
 
 Compiler::Manager::~Manager()
@@ -15,13 +14,6 @@ Compiler::Manager::~Manager()
 	{
 		delete m_lexAnalyzer;
 		m_lexAnalyzer = nullptr;
-	}
-
-	if (m_tokens != nullptr)
-	{
-		m_tokens->clear();
-		delete m_tokens;
-		m_tokens = nullptr;
 	}
 }
 
@@ -36,12 +28,13 @@ void Compiler::Manager::LexAnalysis(String^ sourceCode)
 cli::array<String^>^ Compiler::Manager::CompileProgram(String^ sourceCode)
 {
 	LexAnalysis(sourceCode);
-	m_tokens = m_lexAnalyzer->GetTokens();
+
+	std::vector <Token>* tokens = m_lexAnalyzer->GetTokens();
 
 	//Check for errors
 	unsigned short errors = m_lexAnalyzer->GetErrorModule()->GetErrorNumber();
 
-	cli::array<String^>^ compilationDetails = gcnew cli::array<String^>(2 + m_tokens->size() + errors);
+	cli::array<String^>^ compilationDetails = gcnew cli::array<String^>(2 + tokens->size() + errors);
 
 	unsigned long index = 0;
 
@@ -56,10 +49,10 @@ cli::array<String^>^ Compiler::Manager::CompileProgram(String^ sourceCode)
 	}
 
 	//Add tokens
-	for (index; index < m_tokens->size(); index++)
+	for (index; index < tokens->size(); index++)
 	{
-		compilationDetails[index + 1] = msclr::interop::marshal_as<String^>(std::to_string(m_tokens[0][index].GetLine())
-		+ "#" + m_tokens[0][index].GetLexem() + "#" + m_tokens[0][index].GetTypeStr());
+		compilationDetails[index + 1] = msclr::interop::marshal_as<String^>(std::to_string(tokens[0][index].GetLine())
+		+ '\r' + tokens[0][index].GetLexem() + '\r' + tokens[0][index].GetTypeStr());
 	}
 
 	//Add separator
@@ -72,7 +65,7 @@ cli::array<String^>^ Compiler::Manager::CompileProgram(String^ sourceCode)
 		compilationDetails[index++] = m_errorHandler->GetErrors()[i];
 	}
 
-	m_tokens->clear();
+	tokens->clear();
 	m_errorHandler->ClearErrors();
 	m_lexAnalyzer->SetCurrentChar(0);
 	m_lexAnalyzer->SetCurrentLine(1);

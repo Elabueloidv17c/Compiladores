@@ -11,8 +11,6 @@ namespace Compiler
 	{
 		ErrorModule^			m_errorHandler;
 		LexAnalyzer*			m_lexAnalyzer;
-		
-		std::vector <Token>*	m_tokens;
 
 		void LexAnalysis(String^ sourceCode);
 

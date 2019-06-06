@@ -8,3 +8,13 @@ D:\UAD\6\Compiladores\CompilerUI\CompilerUI\obj\x86\Release\CompilerUI.exe
 D:\UAD\6\Compiladores\CompilerUI\CompilerUI\obj\x86\Release\CompilerUI.pdb
 D:\UAD\6\Compiladores\CompilerUI\CompilerUI\obj\x86\Release\CompilerUI.CompilerUI.resources
 D:\UAD\6\Compiladores\CompilerUI\CompilerUI\obj\x86\Release\CompilerUI.csprojAssemblyReference.cache
+C:\Users\funka\Desktop\Compiladores\CompilerUI\CompilerUI\bin\x86\Release\CompilerUI.exe.config
+C:\Users\funka\Desktop\Compiladores\CompilerUI\CompilerUI\bin\x86\Release\CompilerUI.exe
+C:\Users\funka\Desktop\Compiladores\CompilerUI\CompilerUI\bin\x86\Release\CompilerUI.pdb
+C:\Users\funka\Desktop\Compiladores\CompilerUI\CompilerUI\obj\x86\Release\CompilerUI.csprojAssemblyReference.cache
+C:\Users\funka\Desktop\Compiladores\CompilerUI\CompilerUI\obj\x86\Release\CompilerUI.CompilerUI.resources
+C:\Users\funka\Desktop\Compiladores\CompilerUI\CompilerUI\obj\x86\Release\CompilerUI.Properties.Resources.resources
+C:\Users\funka\Desktop\Compiladores\CompilerUI\CompilerUI\obj\x86\Release\CompilerUI.csproj.GenerateResource.cache
+C:\Users\funka\Desktop\Compiladores\CompilerUI\CompilerUI\obj\x86\Release\CompilerUI.csproj.CoreCompileInputs.cache
+C:\Users\funka\Desktop\Compiladores\CompilerUI\CompilerUI\obj\x86\Release\CompilerUI.exe
+C:\Users\funka\Desktop\Compiladores\CompilerUI\CompilerUI\obj\x86\Release\CompilerUI.pdb

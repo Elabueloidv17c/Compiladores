@@ -19,24 +19,24 @@ void Compiler::FloatState::Read(const char* source, LexAnalyzer& analyzer)
 		{
 			m_buffer = analyzer.GetCurrentToken()->GetLexem() + source[currentChar - 1];
 		}
-
 		analyzer.AddError(ErrorPhase::Lexic, analyzer.GetCurrentLine(), _INVALID_FLOAT,
 		msclr::interop::marshal_as<String^>(m_buffer));
-		
-		analyzer.SetState(new BeginState());
+
+		m_buffer = ".";
+		analyzer.IncCurrentChar();
 	}
 	else
 	{
-		if (source[currentChar] != '\0' || analyzer.IsDigit(source[currentChar - 1]))
+		if (((source[currentChar] != '\0' || analyzer.IsDigit(source[currentChar - 1]))) && source[currentChar - 1] != '.')
 		{
 			analyzer.AddToken(m_buffer, Compiler::TokenType::Float, analyzer.GetCurrentLine());
 		}
-		else
+		else if(source[currentChar - 1] != '.')
 		{
 			analyzer.AddError(ErrorPhase::Lexic, analyzer.GetCurrentLine(), _INVALID_FLOAT,
 			msclr::interop::marshal_as<String^>(m_buffer));
 		}
-		
+
 		analyzer.SetState(new BeginState());
 	}
 }

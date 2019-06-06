@@ -9,14 +9,6 @@
 #include <stack>
 #include <map>
 
-/*
-Parse tree
-
-Tarea:
-
-	- Bottom up parser
-*/
-
 namespace Compiler
 {
 	#define _MAX_ERRORS				30							//Completed

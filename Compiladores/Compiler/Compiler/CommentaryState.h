@@ -8,8 +8,8 @@ namespace Compiler
 
 	class CommentaryState : public LexicState
 	{
-
-		std::string m_buffer;
+		unsigned long			m_startLine;
+		std::string				m_buffer;
 
 	public:
 

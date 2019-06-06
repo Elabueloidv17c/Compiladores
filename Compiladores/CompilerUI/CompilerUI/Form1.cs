@@ -136,7 +136,9 @@ namespace CompilerUI
         {
             if (Edited())
             {
-                if (MessageBox.Show("No has guardado los cambios, quieres guardar?", "Advertencia", MessageBoxButtons.YesNo) != 0)
+                DialogResult wantToSave = MessageBox.Show("No has guardado los cambios, quieres guardar?", "Advertencia", MessageBoxButtons.YesNo);
+
+                if (wantToSave == DialogResult.Yes)
                 {
                     SaveFile();
                     return;
@@ -254,7 +256,7 @@ namespace CompilerUI
 
             for (int i = 0; i < m_tokens.Count(); i++)
             {
-                String[] token = tokens[i + 1].Split('#');
+                String[] token = tokens[i + 1].Split('\r');
                 m_tokens[i] = token;
             }
 

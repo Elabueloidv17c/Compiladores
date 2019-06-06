@@ -49,9 +49,9 @@ namespace Compiler
 		std::map<std::string, std::string>			GetKeyWordMap();
 		void										ClearTokens();
 
-		Token*										GetTokenAt(int index);
 		Token*										GetCurrentToken();
-		Token*										GetNextToken();
-		Token*										GetPrevToken();
+		//Token*										GetTokenAt(int index);
+		//Token*										GetNextToken();
+		//Token*										GetPrevToken();
 	};
 }
