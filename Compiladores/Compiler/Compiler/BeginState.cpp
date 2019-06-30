@@ -97,7 +97,7 @@ void Compiler::BeginState::Read(const char* source, LexAnalyzer& analyzer)
 		std::string error;
 		if (analyzer.GetTokens()->size())
 		{
-			error += analyzer.GetCurrentToken()->GetLexem();
+			error += analyzer.PeekCurrentToken()->GetLexem();
 		}
 
 		error += source[currentChar];

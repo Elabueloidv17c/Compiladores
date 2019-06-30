@@ -1,0 +1,38 @@
+﻿  pch.cpp
+  ArithmeticState.cpp
+  AssemblyInfo.cpp
+  BeginState.cpp
+  CommentaryState.cpp
+  Compiler.cpp
+  ErrorModule.cpp
+  FloatState.cpp
+  GlobalNode.cpp
+  IDState.cpp
+  IntState.cpp
+  LexAnalyzer.cpp
+  LexicState.cpp
+  LocalNode.cpp
+  LogicalState.cpp
+  RelationalState.cpp
+  SemanticAnalyzer.cpp
+  StringState.cpp
+  SymbolTable.cpp
+  SyntaxAnalyzer.cpp
+  SyntaxBegin.cpp
+  Generando código...
+  C:\Users\funka\Desktop\Compiladores\Compiler\Compiler\LocalNode.cpp(62) : warning C4715: 'Compiler::LocalNode::GetCategoryStr': no todas las rutas de acceso de control devuelven un valor
+  C:\Users\funka\Desktop\Compiladores\Compiler\Compiler\GlobalNode.cpp(62) : warning C4715: 'Compiler::GlobalNode::GetCategoryStr': no todas las rutas de acceso de control devuelven un valor
+  C:\Users\funka\Desktop\Compiladores\Compiler\Compiler\ErrorModule.cpp(19) : warning C4722: 'Compiler::ErrorModule::~ErrorModule': el destructor nunca devuelve un valor, posible pérdida de memoria
+  Compilando...
+  SyntaxFunction.cpp
+  SyntaxMain.cpp
+  SyntaxParameter.cpp
+  SyntaxState.cpp
+  SyntaxVar.cpp
+C:\Users\funka\Desktop\Compiladores\Compiler\Compiler\SyntaxParameter.cpp(170,21): warning C4018:  '<': no coinciden signed/unsigned
+  Token.cpp
+  Generando código...
+C:\Users\funka\Desktop\Compiladores\Compiler\Compiler\SyntaxVar.cpp(163,21): warning C4018:  '<': no coinciden signed/unsigned
+C:\Users\funka\Desktop\Compiladores\Compiler\Compiler\SyntaxVar.cpp(163,21): warning C4018: C:\Users\funka\Desktop\Compiladores\Compiler\Compiler\Token.cpp(77) : warning C4715: 'Compiler::Token::GetTypeStr': no todas las rutas de acceso de control devuelven un valor
+  .NETFramework,Version=v4.7.2.AssemblyAttributes.cpp
+  Compiler.vcxproj -> C:\Users\funka\Desktop\Compiladores\Compiler\build\x86\Exe\Release\Compilerx86.dll

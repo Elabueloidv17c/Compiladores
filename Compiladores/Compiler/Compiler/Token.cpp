@@ -74,7 +74,6 @@ std::string Compiler::Token::GetTypeStr()
 	{
 		return "Keyword";
 	}
-
 }
 
 Compiler::Token::Token(unsigned int line, TokenType type, std::string lexem)

@@ -5,6 +5,35 @@
 #include "vcclr.h"
 #include "BeginState.h"
 
+Compiler::LexAnalyzer::LexAnalyzer()
+{
+	m_currentChar = 0;
+	m_currentChar = 1;
+	m_currentToken = 0;
+
+	m_state = new BeginState();
+	m_tokens = new std::vector<Token>();
+}
+
+Compiler::LexAnalyzer::~LexAnalyzer()
+{
+	if (m_state)
+	{
+		delete m_state;
+		m_state = nullptr;
+	}
+
+	m_keywords.clear();
+
+	if (m_tokens)
+	{
+		ClearTokens();
+		delete m_tokens;
+		m_tokens = nullptr;
+	}
+
+}
+
 bool Compiler::LexAnalyzer::ParseSourceCode(const char* source)
 {
 	while (source[m_currentChar] != '\0' && m_errorModule->GetErrorNumber() < _MAX_ERRORS)
@@ -27,6 +56,11 @@ void Compiler::LexAnalyzer::SetCurrentChar(unsigned long index)
 void Compiler::LexAnalyzer::SetCurrentLine(unsigned long index)
 {
 	m_currentLine = index;
+}
+
+void Compiler::LexAnalyzer::SetCurrentToken(int index)
+{
+	m_currentToken = index;
 }
 
 void Compiler::LexAnalyzer::IncCurrentChar()
@@ -65,6 +99,7 @@ Compiler::LexAnalyzer::LexAnalyzer(ErrorModule^ errorModule)
 
 	m_currentChar = 0;
 	m_currentLine = 1;
+	m_currentToken = 0;
 
 	m_state = new BeginState();
 	m_tokens = new std::vector<Token>();
@@ -127,11 +162,6 @@ void Compiler::LexAnalyzer::AddToken(std::string lexem, TokenType type, unsigned
 	m_tokens->push_back(Token(line, type, lexem));
 }
 
-std::vector<Compiler::Token>* Compiler::LexAnalyzer::GetTokens()
-{
-	return m_tokens;
-}
-
 msclr::gcroot<Compiler::ErrorModule^> Compiler::LexAnalyzer::GetErrorModule()
 {
 	return m_errorModule;
@@ -142,37 +172,62 @@ void Compiler::LexAnalyzer::ClearTokens()
 	m_tokens->clear();
 }
 
-Compiler::Token* Compiler::LexAnalyzer::GetCurrentToken()
+
+//Token Getters
+void Compiler::LexAnalyzer::SetTokenIterator(int index)
 {
-	return &m_tokens[0][m_tokens->size() - 1];
+	m_currentToken = index;
 }
 
-Compiler::LexAnalyzer::LexAnalyzer()
+int Compiler::LexAnalyzer::GetTokenIteratior()
 {
-	m_currentChar = 0;
-	m_currentChar = 1;
-
-	m_state = new BeginState();
-	m_tokens = new std::vector<Token>();
+	return m_currentToken;
 }
 
-Compiler::LexAnalyzer::~LexAnalyzer()
+int Compiler::LexAnalyzer::GetNumTokens()
 {
-	if (m_state)
-	{
-		delete m_state;
-		m_state = nullptr;
-	}
+	return m_tokens->size();
+}
 
-	m_keywords.clear();
+std::vector<Compiler::Token>* Compiler::LexAnalyzer::GetTokens()
+{
+	return m_tokens;
+}
 
-	if (m_tokens)
-	{
-		ClearTokens();
-		delete m_tokens;
-		m_tokens = nullptr;
-	}
+Compiler::Token* Compiler::LexAnalyzer::PeekTokenAt(int index)
+{
+	return &m_tokens[0][index];
+}
 
+Compiler::Token* Compiler::LexAnalyzer::PeekNextToken()
+{
+	return &m_tokens[0][m_currentToken + 1];
+}
+
+Compiler::Token* Compiler::LexAnalyzer::PeekPrevToken()
+{
+	return &m_tokens[0][m_currentToken - 1];
+}
+
+Compiler::Token* Compiler::LexAnalyzer::PeekCurrentToken()
+{
+	return &m_tokens[0][m_currentToken];
+}
+
+Compiler::Token* Compiler::LexAnalyzer::GetTokenAt(int index)
+{
+	m_currentToken = index;
+	return &m_tokens[0][m_currentToken];
+}
+
+Compiler::Token* Compiler::LexAnalyzer::GetNextToken()
+{
+	return &m_tokens[0][m_currentToken++];
+}
+
+Compiler::Token* Compiler::LexAnalyzer::GetPrevToken()
+{
+	return &m_tokens[0][--m_currentToken];
 }
 
 bool Compiler::LexAnalyzer::IsAlpha(const char value)

@@ -8,13 +8,3 @@ D:\UAD\6\Compiladores\CompilerUI\CompilerUI\obj\x64\Debug\CompilerUI.csproj.Gene
 D:\UAD\6\Compiladores\CompilerUI\CompilerUI\obj\x64\Debug\CompilerUI.csproj.CoreCompileInputs.cache
 D:\UAD\6\Compiladores\CompilerUI\CompilerUI\obj\x64\Debug\CompilerUI.exe
 D:\UAD\6\Compiladores\CompilerUI\CompilerUI\obj\x64\Debug\CompilerUI.pdb
-C:\Users\funka\Desktop\Compiladores\CompilerUI\CompilerUI\bin\x64\Debug\CompilerUI.exe.config
-C:\Users\funka\Desktop\Compiladores\CompilerUI\CompilerUI\bin\x64\Debug\CompilerUI.exe
-C:\Users\funka\Desktop\Compiladores\CompilerUI\CompilerUI\bin\x64\Debug\CompilerUI.pdb
-C:\Users\funka\Desktop\Compiladores\CompilerUI\CompilerUI\obj\x64\Debug\CompilerUI.csprojAssemblyReference.cache
-C:\Users\funka\Desktop\Compiladores\CompilerUI\CompilerUI\obj\x64\Debug\CompilerUI.CompilerUI.resources
-C:\Users\funka\Desktop\Compiladores\CompilerUI\CompilerUI\obj\x64\Debug\CompilerUI.Properties.Resources.resources
-C:\Users\funka\Desktop\Compiladores\CompilerUI\CompilerUI\obj\x64\Debug\CompilerUI.csproj.GenerateResource.cache
-C:\Users\funka\Desktop\Compiladores\CompilerUI\CompilerUI\obj\x64\Debug\CompilerUI.csproj.CoreCompileInputs.cache
-C:\Users\funka\Desktop\Compiladores\CompilerUI\CompilerUI\obj\x64\Debug\CompilerUI.exe
-C:\Users\funka\Desktop\Compiladores\CompilerUI\CompilerUI\obj\x64\Debug\CompilerUI.pdb

@@ -1,0 +1,59 @@
+ImageRuntimeVersion: v4.0.30319
+Assembly Compilerx86, Version=1.0.*, Culture=Todos los idiomas (todos los países): 
+	hash=SHA1, flags=PublicKey
+Assembly mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Class Compiler.ErrorModule: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Methods:
+    AddError(ErrorPhase, Int32, String, String): PrivateScope, Public, HideBySig
+    GetErrorNumber(): PrivateScope, Public, HideBySig
+    ClearErrors(): PrivateScope, Public, HideBySig
+    GetErrors(): PrivateScope, Public, HideBySig
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Struct Compiler.SymbolCategory: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+Struct Compiler.ErrorPhase: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    Compiler.ErrorPhase Global = 0 : Public, Static, Literal, HasDefault
+    Compiler.ErrorPhase Lexic = 1 : Public, Static, Literal, HasDefault
+    Compiler.ErrorPhase Syntactic = 2 : Public, Static, Literal, HasDefault
+    Compiler.ErrorPhase Semantic = 3 : Public, Static, Literal, HasDefault
+    Compiler.ErrorPhase CodeGeneration = 4 : Public, Static, Literal, HasDefault
+Struct Compiler.TokenType: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    Compiler.TokenType ID = 0 : Public, Static, Literal, HasDefault
+    Compiler.TokenType Int = 1 : Public, Static, Literal, HasDefault
+    Compiler.TokenType Float = 2 : Public, Static, Literal, HasDefault
+    Compiler.TokenType String = 3 : Public, Static, Literal, HasDefault
+    Compiler.TokenType Relational = 4 : Public, Static, Literal, HasDefault
+    Compiler.TokenType Arithmetic = 5 : Public, Static, Literal, HasDefault
+    Compiler.TokenType Logical = 6 : Public, Static, Literal, HasDefault
+    Compiler.TokenType UnaryLogical = 7 : Public, Static, Literal, HasDefault
+    Compiler.TokenType Negation = 8 : Public, Static, Literal, HasDefault
+    Compiler.TokenType Separator = 9 : Public, Static, Literal, HasDefault
+    Compiler.TokenType Assign = 10 : Public, Static, Literal, HasDefault
+    Compiler.TokenType Dimension = 11 : Public, Static, Literal, HasDefault
+    Compiler.TokenType Grouping = 12 : Public, Static, Literal, HasDefault
+    Compiler.TokenType Keyword = 13 : Public, Static, Literal, HasDefault
+Class Compiler.Manager: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Methods:
+    CompileProgram(String): PrivateScope, Public, HideBySig
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig

@@ -11,6 +11,6 @@ namespace Compiler
 		virtual void Read(const char* source, LexAnalyzer& analyzer);
 
 		LexicState();
-		virtual ~LexicState();
+		virtual ~LexicState() = 0;
 	};
 }

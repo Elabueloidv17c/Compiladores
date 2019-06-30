@@ -13,6 +13,24 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Archivos de encabezado\Lexic">
+      <UniqueIdentifier>{a3918220-2f2d-4ba4-a03a-beb668923458}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Syntactic">
+      <UniqueIdentifier>{cc8a8ad1-104a-4e07-96a9-07e762c8143a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Semantic">
+      <UniqueIdentifier>{cdd29e40-7296-4d87-8ba6-9b4578e6e164}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\Semantic">
+      <UniqueIdentifier>{bf5d0117-be26-4f3c-bfcb-e7a796b1c024}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\Syntactic">
+      <UniqueIdentifier>{a465eb7f-dbbc-4823-a0bc-b9b436a6d54e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\Lexic">
+      <UniqueIdentifier>{5359083c-2965-4c85-8431-d08bd1a5ada4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Compiler.h">
@@ -24,47 +42,80 @@
     <ClInclude Include="pch.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="ErrorModule.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="LexAnalyzer.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="Headers.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Token.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="LexicState.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="IDState.h">
-      <Filter>Archivos de encabezado</Filter>
+    <ClInclude Include="ArithmeticState.h">
+      <Filter>Archivos de encabezado\Lexic</Filter>
     </ClInclude>
     <ClInclude Include="BeginState.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="RelationalState.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="StringState.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="IntState.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="FloatState.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="LogicalState.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="ArithmeticState.h">
-      <Filter>Archivos de encabezado</Filter>
+      <Filter>Archivos de encabezado\Lexic</Filter>
     </ClInclude>
     <ClInclude Include="CommentaryState.h">
-      <Filter>Archivos de encabezado</Filter>
+      <Filter>Archivos de encabezado\Lexic</Filter>
+    </ClInclude>
+    <ClInclude Include="FloatState.h">
+      <Filter>Archivos de encabezado\Lexic</Filter>
+    </ClInclude>
+    <ClInclude Include="IDState.h">
+      <Filter>Archivos de encabezado\Lexic</Filter>
+    </ClInclude>
+    <ClInclude Include="IntState.h">
+      <Filter>Archivos de encabezado\Lexic</Filter>
+    </ClInclude>
+    <ClInclude Include="LexAnalyzer.h">
+      <Filter>Archivos de encabezado\Lexic</Filter>
+    </ClInclude>
+    <ClInclude Include="LexicState.h">
+      <Filter>Archivos de encabezado\Lexic</Filter>
+    </ClInclude>
+    <ClInclude Include="RelationalState.h">
+      <Filter>Archivos de encabezado\Lexic</Filter>
+    </ClInclude>
+    <ClInclude Include="StringState.h">
+      <Filter>Archivos de encabezado\Lexic</Filter>
+    </ClInclude>
+    <ClInclude Include="Token.h">
+      <Filter>Archivos de encabezado\Lexic</Filter>
+    </ClInclude>
+    <ClInclude Include="LogicalState.h">
+      <Filter>Archivos de encabezado\Lexic</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalNode.h">
+      <Filter>Archivos de encabezado\Syntactic</Filter>
+    </ClInclude>
+    <ClInclude Include="LocalNode.h">
+      <Filter>Archivos de encabezado\Syntactic</Filter>
+    </ClInclude>
+    <ClInclude Include="SymbolTable.h">
+      <Filter>Archivos de encabezado\Syntactic</Filter>
+    </ClInclude>
+    <ClInclude Include="SyntaxAnalyzer.h">
+      <Filter>Archivos de encabezado\Syntactic</Filter>
+    </ClInclude>
+    <ClInclude Include="SyntaxBegin.h">
+      <Filter>Archivos de encabezado\Syntactic</Filter>
+    </ClInclude>
+    <ClInclude Include="SyntaxState.h">
+      <Filter>Archivos de encabezado\Syntactic</Filter>
+    </ClInclude>
+    <ClInclude Include="SemanticAnalyzer.h">
+      <Filter>Archivos de encabezado\Semantic</Filter>
+    </ClInclude>
+    <ClInclude Include="SyntaxVar.h">
+      <Filter>Archivos de encabezado\Syntactic</Filter>
+    </ClInclude>
+    <ClInclude Include="SyntaxFunction.h">
+      <Filter>Archivos de encabezado\Syntactic</Filter>
+    </ClInclude>
+    <ClInclude Include="SyntaxParameter.h">
+      <Filter>Archivos de encabezado\Syntactic</Filter>
+    </ClInclude>
+    <ClInclude Include="SyntaxMain.h">
+      <Filter>Archivos de encabezado\Syntactic</Filter>
+    </ClInclude>
+    <ClInclude Include="ErrorModule.h">
+      <Filter>Archivos de encabezado\Lexic</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -77,44 +128,77 @@
     <ClCompile Include="pch.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="ErrorModule.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="LexAnalyzer.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="Token.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="LexicState.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="IDState.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="BeginState.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="RelationalState.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="StringState.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="IntState.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="FloatState.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="LogicalState.cpp">
-      <Filter>Archivos de origen</Filter>
+    <ClCompile Include="SemanticAnalyzer.cpp">
+      <Filter>Archivos de origen\Semantic</Filter>
     </ClCompile>
     <ClCompile Include="ArithmeticState.cpp">
-      <Filter>Archivos de origen</Filter>
+      <Filter>Archivos de origen\Lexic</Filter>
+    </ClCompile>
+    <ClCompile Include="BeginState.cpp">
+      <Filter>Archivos de origen\Lexic</Filter>
     </ClCompile>
     <ClCompile Include="CommentaryState.cpp">
-      <Filter>Archivos de origen</Filter>
+      <Filter>Archivos de origen\Lexic</Filter>
+    </ClCompile>
+    <ClCompile Include="FloatState.cpp">
+      <Filter>Archivos de origen\Lexic</Filter>
+    </ClCompile>
+    <ClCompile Include="IDState.cpp">
+      <Filter>Archivos de origen\Lexic</Filter>
+    </ClCompile>
+    <ClCompile Include="IntState.cpp">
+      <Filter>Archivos de origen\Lexic</Filter>
+    </ClCompile>
+    <ClCompile Include="LexAnalyzer.cpp">
+      <Filter>Archivos de origen\Lexic</Filter>
+    </ClCompile>
+    <ClCompile Include="LexicState.cpp">
+      <Filter>Archivos de origen\Lexic</Filter>
+    </ClCompile>
+    <ClCompile Include="LogicalState.cpp">
+      <Filter>Archivos de origen\Lexic</Filter>
+    </ClCompile>
+    <ClCompile Include="RelationalState.cpp">
+      <Filter>Archivos de origen\Lexic</Filter>
+    </ClCompile>
+    <ClCompile Include="StringState.cpp">
+      <Filter>Archivos de origen\Lexic</Filter>
+    </ClCompile>
+    <ClCompile Include="SymbolTable.cpp">
+      <Filter>Archivos de origen\Syntactic</Filter>
+    </ClCompile>
+    <ClCompile Include="SyntaxAnalyzer.cpp">
+      <Filter>Archivos de origen\Syntactic</Filter>
+    </ClCompile>
+    <ClCompile Include="SyntaxBegin.cpp">
+      <Filter>Archivos de origen\Syntactic</Filter>
+    </ClCompile>
+    <ClCompile Include="SyntaxState.cpp">
+      <Filter>Archivos de origen\Syntactic</Filter>
+    </ClCompile>
+    <ClCompile Include="GlobalNode.cpp">
+      <Filter>Archivos de origen\Syntactic</Filter>
+    </ClCompile>
+    <ClCompile Include="LocalNode.cpp">
+      <Filter>Archivos de origen\Syntactic</Filter>
+    </ClCompile>
+    <ClCompile Include="Token.cpp">
+      <Filter>Archivos de origen\Lexic</Filter>
+    </ClCompile>
+    <ClCompile Include="SyntaxVar.cpp">
+      <Filter>Archivos de origen\Syntactic</Filter>
+    </ClCompile>
+    <ClCompile Include="SyntaxFunction.cpp">
+      <Filter>Archivos de origen\Syntactic</Filter>
+    </ClCompile>
+    <ClCompile Include="SyntaxParameter.cpp">
+      <Filter>Archivos de origen\Syntactic</Filter>
+    </ClCompile>
+    <ClCompile Include="SyntaxMain.cpp">
+      <Filter>Archivos de origen\Syntactic</Filter>
+    </ClCompile>
+    <ClCompile Include="ErrorModule.cpp">
+      <Filter>Archivos de origen\Lexic</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

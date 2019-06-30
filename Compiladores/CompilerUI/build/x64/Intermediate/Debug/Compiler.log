@@ -1,0 +1,5 @@
+﻿  Compiler.cpp
+d:\uad\6\compiladores\compiler\compiler\compiler.cpp(56): warning C4267: 'inicializando': conversión de 'size_t' a 'int'; posible pérdida de datos
+d:\uad\6\compiladores\compiler\compiler\compiler.cpp(61): warning C4267: 'argumento': conversión de 'size_t' a 'int'; posible pérdida de datos
+  ArithmeticState.obj : se encontró un módulo MSIL; vinculación incremental deshabilitada para MSIL; ejecutando vínculo completo
+  Compiler.vcxproj -> D:\UAD\6\Compiladores\CompilerUI\build\x64\Exe\Debug\Compilerx64d.dll

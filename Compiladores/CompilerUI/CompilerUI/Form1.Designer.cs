@@ -73,10 +73,10 @@
             this.Editor.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.Editor.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Editor.ForeColor = System.Drawing.SystemColors.Window;
-            this.Editor.Location = new System.Drawing.Point(12, 38);
+            this.Editor.Location = new System.Drawing.Point(0, 27);
             this.Editor.Multiline = true;
             this.Editor.Name = "Editor";
-            this.Editor.Size = new System.Drawing.Size(740, 303);
+            this.Editor.Size = new System.Drawing.Size(862, 406);
             this.Editor.TabIndex = 0;
             // 
             // textBox2
@@ -84,10 +84,10 @@
             this.textBox2.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
             this.textBox2.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox2.ForeColor = System.Drawing.SystemColors.Window;
-            this.textBox2.Location = new System.Drawing.Point(12, 366);
+            this.textBox2.Location = new System.Drawing.Point(0, 451);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(993, 102);
+            this.textBox2.Size = new System.Drawing.Size(1152, 154);
             this.textBox2.TabIndex = 1;
             // 
             // dataGridView1
@@ -97,9 +97,10 @@
             this.Token,
             this.Lexem,
             this.Type});
-            this.dataGridView1.Location = new System.Drawing.Point(758, 38);
+            this.dataGridView1.Location = new System.Drawing.Point(868, 27);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(247, 324);
+            this.dataGridView1.RowHeadersWidth = 30;
+            this.dataGridView1.Size = new System.Drawing.Size(284, 406);
             this.dataGridView1.TabIndex = 2;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellContentClick);
             // 
@@ -135,10 +136,12 @@
             this.Length,
             this.DataType,
             this.InFunction});
-            this.dataGridView2.Location = new System.Drawing.Point(13, 499);
+            this.dataGridView2.Location = new System.Drawing.Point(0, 624);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(992, 93);
+            this.dataGridView2.RowHeadersWidth = 30;
+            this.dataGridView2.Size = new System.Drawing.Size(1152, 188);
             this.dataGridView2.TabIndex = 3;
+            this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView2_CellContentClick);
             // 
             // Line
             // 
@@ -173,7 +176,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 344);
+            this.label1.Location = new System.Drawing.Point(10, 436);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(39, 13);
             this.label1.TabIndex = 4;
@@ -182,7 +185,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 480);
+            this.label2.Location = new System.Drawing.Point(10, 608);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(68, 13);
             this.label2.TabIndex = 5;
@@ -191,7 +194,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(758, 13);
+            this.label3.Location = new System.Drawing.Point(902, 11);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(43, 13);
             this.label3.TabIndex = 6;
@@ -206,7 +209,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1017, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1152, 24);
             this.menuStrip1.TabIndex = 7;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -277,25 +280,25 @@
             // compileProgramToolStripMenuItem
             // 
             this.compileProgramToolStripMenuItem.Name = "compileProgramToolStripMenuItem";
-            this.compileProgramToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
+            this.compileProgramToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
             this.compileProgramToolStripMenuItem.Text = "Compile Program";
             this.compileProgramToolStripMenuItem.Click += new System.EventHandler(this.CompileProgramToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(206, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(204, 6);
             // 
             // saveTokensToFileToolStripMenuItem
             // 
             this.saveTokensToFileToolStripMenuItem.Name = "saveTokensToFileToolStripMenuItem";
-            this.saveTokensToFileToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
+            this.saveTokensToFileToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
             this.saveTokensToFileToolStripMenuItem.Text = "Save Tokens To File";
             // 
             // saveSymbolTableToFileToolStripMenuItem
             // 
             this.saveSymbolTableToFileToolStripMenuItem.Name = "saveSymbolTableToFileToolStripMenuItem";
-            this.saveSymbolTableToFileToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
+            this.saveSymbolTableToFileToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
             this.saveSymbolTableToFileToolStripMenuItem.Text = "Save Symbol Table To File";
             // 
             // optionsToolStripMenuItem
@@ -345,7 +348,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1017, 604);
+            this.ClientSize = new System.Drawing.Size(1152, 813);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -356,7 +359,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "CompilerUI";
-            this.Text = "Form1";
+            this.Text = "Compiler";
             this.Load += new System.EventHandler(this.CompilerUI_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();

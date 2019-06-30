@@ -11,14 +11,33 @@
 
 namespace Compiler
 {
-	#define _MAX_ERRORS				30							//Completed
-	#define _LEX_INVALID_ID			"Invalid identifier"		//Completed
+	#define _MAX_ERRORS				30							
+	#define _LEX_INVALID_ID			"Invalid identifier"		
 	#define _STRING_NOT_CLOSED		"String not closed"
 	#define _COMMENT_NOT_CLOSED		"Comment not closed"
 
-	#define _INVALID_OP_LOG			"Invalid logic operator"	//Completed
-	#define _INVALID_FLOAT			"Invalid float"				//Completed
-	#define _LEX_INVALID_CHAR		"Invalid character"			//Completed
+	#define _INVALID_OP_LOG			"Invalid logic operator"	
+	#define _INVALID_FLOAT			"Invalid float"				
+	#define _LEX_INVALID_CHAR		"Invalid character"			
+
+	#define Global_Scope			"global"
+	#define Main_Scope				"main"
+
+	struct VarData
+	{
+		int line;
+		int length;
+		std::string name;
+	};
+
+	public enum SymbolCategory
+	{
+		Undefined,
+		Global,
+		Local,
+		Function,
+		Parameter
+	};
 
 	public enum class ErrorPhase
 	{

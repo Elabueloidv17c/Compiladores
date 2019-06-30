@@ -12,6 +12,7 @@ namespace Compiler
 	{
 		msclr::gcroot<ErrorModule^>					m_errorModule;
 		std::vector<Token>*							m_tokens;
+		int											m_currentToken;
 
 		std::map<std::string, std::string>			m_keywords;
 		
@@ -25,20 +26,21 @@ namespace Compiler
 		LexAnalyzer();
 		~LexAnalyzer();
 
+		bool										ParseSourceCode(const char* source);
+		void										SetState(LexicState* state);
+		void										Read(const char* source);
+
 		bool										IsAlpha(const char value);
 		bool										IsDigit(const char value);
 
 		bool										AddError(ErrorPhase phase, int lineNumber, String^ errorDescription, String^ errorLine);
 		void										AddToken(std::string lexem, TokenType type, unsigned int line);
-		bool										ParseSourceCode(const char* source);
-		void										SetState(LexicState* state);
-		void										Read(const char* source);
-		std::vector <Token>*						GetTokens();
 
 		msclr::gcroot<ErrorModule^>					GetErrorModule();
 
 		void										SetCurrentChar(unsigned long index);
 		void										SetCurrentLine(unsigned long index);
+		void										SetCurrentToken(int index);
 		unsigned long								GetCurrentChar();
 		void										IncCurrentChar();
 		void										DecCurrentChar();
@@ -49,9 +51,18 @@ namespace Compiler
 		std::map<std::string, std::string>			GetKeyWordMap();
 		void										ClearTokens();
 
-		Token*										GetCurrentToken();
-		//Token*										GetTokenAt(int index);
-		//Token*										GetNextToken();
-		//Token*										GetPrevToken();
+		void										SetTokenIterator(int index);
+		int											GetTokenIteratior();
+		int											GetNumTokens();
+		std::vector <Token>*						GetTokens();
+
+		Token*										PeekTokenAt(int index);
+		Token*										PeekCurrentToken();
+		Token*										PeekNextToken();
+		Token*										PeekPrevToken();
+
+		Token*										GetTokenAt(int index);
+		Token*										GetNextToken();
+		Token*										GetPrevToken();
 	};
 }
