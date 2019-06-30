@@ -1,7 +1,0 @@
-﻿  pch.cpp
-  AssemblyInfo.cpp
-  Compiler.cpp
-  Generando código...
-  .NETFramework,Version=v4.7.2.AssemblyAttributes.cpp
-  AssemblyInfo.obj : se encontró un módulo MSIL; vinculación incremental deshabilitada para MSIL; ejecutando vínculo completo
-  Compiler.vcxproj -> D:\UAD\6\Compiladores\Compiler\x86\Exe\Debug\Compilerx86d.dll

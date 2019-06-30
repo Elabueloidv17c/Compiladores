@@ -158,7 +158,7 @@ void Compiler::SyntaxFunction::CheckSyntax()
 			}
 			if (!m_lexAnalyzer->PeekCurrentToken()->GetLexem().compare("var"))
 			{
-				m_syntaxAnalyzer->AddState(new SyntaxVar(m_lexAnalyzer, m_syntaxAnalyzer, Main_Scope));
+				m_syntaxAnalyzer->AddState(new SyntaxVar(m_lexAnalyzer, m_syntaxAnalyzer, m_name));
 				return;
 			}
 			else

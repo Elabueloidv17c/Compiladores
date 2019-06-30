@@ -13,6 +13,7 @@ std::vector<std::string> Compiler::SymbolTable::GetStrSymbols()
 
 		if (gNode->GetCategory() != SymbolCategory::Undefined)
 		{
+			int lineTest = gNode->GetLine();
 			current += gNode->GetLineStr() + "\r" + gNode->GetName() + "\r" + gNode->GetCategoryStr() + "\r" +
 			gNode->GetDimensionStr() + "\r" + gNode->GetDataType() + "\r" + gNode->GetScope();
 
@@ -55,6 +56,35 @@ void Compiler::SymbolTable::AddSymbol(int line, std::string name, SymbolCategory
 		}
 		else if (category == SymbolCategory::Function)
 		{
+			//Check if there is an undefined global node, change it to global and check locals to add error if found
+			if (m_symbols.find(name) != m_symbols.end())
+			{
+				auto it = m_symbols.find(name);
+				GlobalNode* gNode = it->second;
+
+				if (gNode->GetCategory() == SymbolCategory::Undefined)
+				{
+					gNode->SetCategory(category);
+					gNode->SetDataType(dataType);
+					gNode->SetLine(line);
+
+					LocalNode* lNode = gNode->GetLocalNode();
+
+					while (lNode != nullptr)
+					{
+						if (lNode->GetCategory() == SymbolCategory::Local)
+						{
+							m_errorModule->AddError(ErrorPhase::Syntactic, line, msclr::interop::marshal_as<String^>(
+							"Error: local var name already defined as function"), msclr::interop::marshal_as<String^>("Symbol: " + name));
+							break;
+						}
+						lNode = lNode->GetNextNode();
+					}
+
+					return;
+				}
+			}
+			
 			// Verify that does not exist as global var
 			if (!SymbolExists(name, SymbolCategory::Global, scope))
 			{
@@ -80,55 +110,18 @@ void Compiler::SymbolTable::AddSymbol(int line, std::string name, SymbolCategory
 			{
 				if (!SymbolExists(name, SymbolCategory::Function, scope))
 				{
-					bool isLocalNull = true;
-
-					if (m_symbols.find(name) == m_symbols.end())
+					auto it = m_symbols.find(name);
+					if (it == m_symbols.end())
 					{
 						m_symbols.insert(std::pair<std::string, GlobalNode*>(name, new GlobalNode(line, name, SymbolCategory::Undefined,
 						dimension, dataType, scope)));
-
-						auto it = m_symbols.rbegin();
-						GlobalNode* gNode = it->second;
-						LocalNode* lNode = gNode->GetLocalNode();
-
-						while (lNode != nullptr)
-						{
-							isLocalNull = false;
-							lNode = lNode->GetNextNode();
-						}
-						if (!isLocalNull)
-						{
-							lNode = new LocalNode(line, name, category, dimension, dataType, scope);
-						}
-						else
-						{
-							gNode->SetLocalNode(new LocalNode(line, name, category, dimension, dataType, scope));
-						}
-						return;
 					}
-					else
-					{
-						auto it = m_symbols.find(name);
-						GlobalNode* gNode = it->second;
-						LocalNode* lNode = gNode->GetLocalNode();
 
-						while (lNode != nullptr)
-						{
-							isLocalNull = false;
-							lNode = lNode->GetNextNode();
-						}
-						if (!isLocalNull)
-						{
-							lNode = new LocalNode(line, name, category, dimension, dataType, scope);
-						}
-						else
-						{
-							gNode->SetLocalNode(new LocalNode(line, name, category, dimension, dataType, scope));
-						}
-						return;
-					}
+					it = m_symbols.find(name);
+					GlobalNode* gNode = it->second;
+					gNode->SetLocalNode(new LocalNode(line, name, category, dimension, dataType, scope));
+					return;
 				}
-
 				m_errorModule->AddError(ErrorPhase::Syntactic, line, msclr::interop::marshal_as<String^>(
 				"Error: local var name already defined as function"), msclr::interop::marshal_as<String^>("Symbol: " + name));
 				return;
@@ -145,53 +138,17 @@ void Compiler::SymbolTable::AddSymbol(int line, std::string name, SymbolCategory
 			{
 				if (!SymbolExists(name, SymbolCategory::Function, scope))
 				{
-					bool isLocalNull = true;
-
-					if (m_symbols.find(name) == m_symbols.end())
+					auto it = m_symbols.find(name);
+					if (it == m_symbols.end())
 					{
 						m_symbols.insert(std::pair<std::string, GlobalNode*>(name, new GlobalNode(line, name, SymbolCategory::Undefined,
 						dimension, dataType, scope)));
-
-						auto it = m_symbols.rbegin();
-						GlobalNode* gNode = it->second;
-						LocalNode* lNode = gNode->GetLocalNode();
-
-						while (lNode != nullptr)
-						{
-							isLocalNull = false;
-							lNode = lNode->GetNextNode();
-						}
-						if (!isLocalNull)
-						{
-							lNode = new LocalNode(line, name, category, dimension, dataType, scope);
-						}
-						else
-						{
-							gNode->SetLocalNode(new LocalNode(line, name, category, dimension, dataType, scope));
-						}
-						return;
 					}
-					else
-					{
-						auto it = m_symbols.find(name);
-						GlobalNode* gNode = it->second;
-						LocalNode* lNode = gNode->GetLocalNode();
 
-						while (lNode != nullptr)
-						{
-							isLocalNull = false;
-							lNode = lNode->GetNextNode();
-						}
-						if (!isLocalNull)
-						{
-							lNode = new LocalNode(line, name, category, dimension, dataType, scope);
-						}
-						else
-						{
-							gNode->SetLocalNode(new LocalNode(line, name, category, dimension, dataType, scope));
-						}
-						return;
-					}
+					it = m_symbols.find(name);
+					GlobalNode* gNode = it->second;
+					gNode->SetLocalNode(new LocalNode(line, name, category, dimension, dataType, scope));
+					return;
 				}
 
 				m_errorModule->AddError(ErrorPhase::Syntactic, line, msclr::interop::marshal_as<String^>(

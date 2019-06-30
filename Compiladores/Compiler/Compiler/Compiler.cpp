@@ -60,56 +60,54 @@ cli::array<String^>^ Compiler::Manager::CompileProgram(String^ sourceCode)
 
 	cli::array<String^>^ compilationDetails = gcnew cli::array<String^>(3 + tokens->size() + errors + symbols.size());
 
+	unsigned long index = 0;
 
+	//Add compilation state in the first index
+	if (!m_errorHandler->GetErrorNumber())
+	{
+		compilationDetails[index] = gcnew String("---------Compilation Succeeded---------");
+	}
+	else
+	{
+		compilationDetails[index] = gcnew String("----------Compilation Failed----------");
+	}
 
-		unsigned long index = 0;
+	//Add tokens
+	for (index; index < tokens->size(); index++)
+	{
+		compilationDetails[index + 1] = msclr::interop::marshal_as<String^>(std::to_string(tokens[0][index].GetLine())
+			+ '\r' + tokens[0][index].GetLexem() + '\r' + tokens[0][index].GetTypeStr());
+	}
 
-		//Add compilation state in the first index
-		if (!m_errorHandler->GetErrorNumber())
-		{
-			compilationDetails[index] = gcnew String("---------Compilation Succeeded---------");
-		}
-		else
-		{
-			compilationDetails[index] = gcnew String("----------Compilation Failed----------");
-		}
+	//Add separator
+	compilationDetails[++index] = msclr::interop::marshal_as<String^>("@");
 
-		//Add tokens
-		for (index; index < tokens->size(); index++)
-		{
-			compilationDetails[index + 1] = msclr::interop::marshal_as<String^>(std::to_string(tokens[0][index].GetLine())
-				+ '\r' + tokens[0][index].GetLexem() + '\r' + tokens[0][index].GetTypeStr());
-		}
+	//Add Symbols
+	index++;
+	for (unsigned int i = 0; i < symbols.size(); i++)
+	{
+		compilationDetails[index++] = msclr::interop::marshal_as<String^>(symbols[i]);
+	}
 
-		//Add separator
-		compilationDetails[++index] = msclr::interop::marshal_as<String^>("@");
+	//Add separator
+	compilationDetails[index++] = msclr::interop::marshal_as<String^>("@");
 
-		//Add Symbols
-		index++;
-		for (unsigned int i = 0; i < symbols.size(); i++)
-		{
-			compilationDetails[index++] = msclr::interop::marshal_as<String^>(symbols[i]);
-		}
+	//Add Errors
+	for (unsigned int i = 0; i < errors; i++)
+	{
+		compilationDetails[index++] = m_errorHandler->GetErrors()[i];
+	}
 
-		//Add separator
-		compilationDetails[index++] = msclr::interop::marshal_as<String^>("@");
+	tokens->clear();
+	m_errorHandler->ClearErrors();
+	m_lexAnalyzer->SetCurrentChar(0);
+	m_lexAnalyzer->SetCurrentLine(1);
+	m_lexAnalyzer->SetCurrentToken(0);
+	m_syntaxAnalyzer->ClearStates();
+	m_syntaxAnalyzer->SetMainAdded(false);
+	m_symbolTable->Clear();
 
-		//Add Errors
-		for (unsigned int i = 0; i < errors; i++)
-		{
-			compilationDetails[index++] = m_errorHandler->GetErrors()[i];
-		}
-
-		tokens->clear();
-		m_errorHandler->ClearErrors();
-		m_lexAnalyzer->SetCurrentChar(0);
-		m_lexAnalyzer->SetCurrentLine(1);
-		m_lexAnalyzer->SetCurrentToken(0);
-		m_syntaxAnalyzer->ClearStates();
-		m_syntaxAnalyzer->SetMainAdded(false);
-		m_symbolTable->Clear();
-
-		return compilationDetails;
+	return compilationDetails;
 }
 
 

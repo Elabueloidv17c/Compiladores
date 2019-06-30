@@ -21,6 +21,7 @@ namespace Compiler
 
 		void*				m_value;
 		LocalNode*			m_localNode;
+		LocalNode*			m_nodeExplorer;
 
 	public:
 		GlobalNode(int line, std::string name, SymbolCategory category, int dimension, std::string dataType, std::string scope);
@@ -35,6 +36,14 @@ namespace Compiler
 		std::string			GetDataType();
 		std::string			GetScope();
 		std::string			GetName();
+
+
+		void				SetLine(int line);
+		void				SetDimension(int dimension);
+		void				SetCategory(SymbolCategory category);
+		void				SetDataType(std::string dataType);
+		void				SetScope(std::string scope);
+		void				SetName(std::string name);
 
 		void				SetLocalNode(LocalNode* localNode);
 		LocalNode*			GetLocalNode();

@@ -3,6 +3,7 @@
 
 Compiler::GlobalNode::GlobalNode(int line, std::string name, SymbolCategory category, int dimension, std::string dataType, std::string scope)
 {
+	m_nodeExplorer = nullptr;
 	m_localNode = nullptr;
 	m_dimension = dimension;
 	m_category = category;
@@ -83,5 +84,47 @@ Compiler::LocalNode* Compiler::GlobalNode::GetLocalNode()
 
 void Compiler::GlobalNode::SetLocalNode(LocalNode* localNode)
 {
-	m_localNode = localNode;
+	if (!m_localNode)
+	{
+		m_localNode = localNode;
+		m_nodeExplorer = m_localNode;
+		return;
+	}
+
+	while (m_nodeExplorer->HasNextNode())
+	{
+		m_nodeExplorer->GetNextNode();
+	}
+
+	m_nodeExplorer->SetNextNode(localNode);
+}
+
+void Compiler::GlobalNode::SetLine(int line)
+{
+	m_line = line;
+}
+
+void Compiler::GlobalNode::SetDimension(int dimension)
+{
+	m_dimension = dimension;
+}
+
+void Compiler::GlobalNode::SetCategory(SymbolCategory category)
+{
+	m_category = category;
+}
+
+void Compiler::GlobalNode::SetDataType(std::string dataType)
+{
+	m_dataType = dataType;
+}
+
+void Compiler::GlobalNode::SetScope(std::string scope)
+{
+	m_scope = scope;
+}
+
+void Compiler::GlobalNode::SetName(std::string name)
+{
+	m_name = name;
 }

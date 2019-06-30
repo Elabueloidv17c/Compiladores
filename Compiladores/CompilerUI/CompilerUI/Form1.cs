@@ -25,6 +25,7 @@ namespace CompilerUI
         bool            m_isDllLoaded;
         String          m_dllPath;
 
+        String[][]      m_symbols;
         String[][]      m_tokens;
         String[]        m_errors;
         String          m_compilationState;
@@ -94,17 +95,19 @@ namespace CompilerUI
             {
                 ParseTokenArray(m_compilerDLL.CompileProgram(Editor.Text));
 
-                if (m_tokens != null)
+                for (int i = 0; i < m_tokens.Count(); i++)
                 {
-                    for (int i = 0; i < m_tokens.Count(); i++)
-                    {
-                        dataGridView1.Rows.Add(m_tokens[i]);
-                    }
+                    dataGridView1.Rows.Add(m_tokens[i]);
+                }
 
-                    for (int i = 0; i < m_errors.Count(); i++)
-                    {
-                        textBox2.Text += m_errors[i] + System.Environment.NewLine;
-                    }
+                for (int i = 0; i < m_symbols.Count(); i++)
+                {
+                    dataGridView2.Rows.Add(m_symbols[i]);
+                }
+
+                for (int i = 0; i < m_errors.Count(); i++)
+                {
+                    textBox2.Text += m_errors[i] + System.Environment.NewLine;
                 }
             }
             else
@@ -222,13 +225,13 @@ namespace CompilerUI
             String proccesFullPath = Process.GetCurrentProcess().MainModule.FileName;
             DirectoryInfo Up;
 
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 4; i++)
             {
                 Up = Directory.GetParent(proccesFullPath);
                 proccesFullPath = Up.FullName;
             }
 
-            m_dllPath = proccesFullPath + "\\CompilerUI\\build\\" + dllArchitecture + "\\Exe\\" + configuration + "\\" + dllFilename;
+            m_dllPath = proccesFullPath + "\\" + dllArchitecture + "\\Exe\\" + configuration + "\\" + dllFilename;
 
             var DLL = Assembly.UnsafeLoadFrom(m_dllPath);
 
@@ -244,43 +247,56 @@ namespace CompilerUI
             return m_isDllLoaded;
         }
 
-        private void ParseTokenArray(String[] tokens)
+        private void ParseTokenArray(String[] compilationDetails)
         {
-            if (tokens.Length > 4)
+            m_compilationState = compilationDetails[0];
+
+            int tokenSize = 0;
+            while (compilationDetails[tokenSize] != "@")
             {
-                int index = 0;
-                while (tokens[index] != "@")
-                {
-                    index++;
-                }
-
-                if (index > 0)
-                {
-                    m_compilationState = tokens[0];
-                }
-                else
-                {
-                    return;
-                }
-
-                m_errors = new String[tokens.Count() - index - 1];
-                m_tokens = new String[index - 1][];
-
-                for (int i = 0; i < m_tokens.Count(); i++)
-                {
-                    String[] token = tokens[i + 1].Split('\r');
-                    m_tokens[i] = token;
-                }
-
-                for (int i = 0; i < m_errors.Count(); i++)
-                {
-                    m_errors[i] = tokens[++index];
-                }
-
-                dataGridView1.Rows.Clear();
-                dataGridView1.Refresh();
-                textBox2.Text = m_compilationState + System.Environment.NewLine;
+                tokenSize++;
             }
+
+            m_tokens = new String[tokenSize - 1][];
+
+            int symbolSize = 0;
+            while (compilationDetails[tokenSize + symbolSize + 1] != "@")
+            {
+                symbolSize++;
+            }
+
+            m_symbols = new String[symbolSize][];
+
+            int errorSize = 0;
+            while ((tokenSize + symbolSize + errorSize + 2) < compilationDetails.Length)
+            {
+                errorSize++;
+            }
+
+            m_errors = new String[errorSize];
+           
+            for (int i = 0; i < m_tokens.Count(); i++)
+            {
+                String[] token = compilationDetails[i + 1].Split('\r');
+                m_tokens[i] = token;
+            }
+
+            for (int i = 0; i < m_symbols.Count(); i++)
+            {
+                String[] symbol = compilationDetails[i + tokenSize + 1].Split('\r');
+                m_symbols[i] = symbol;
+            }
+
+            for (int i = 0; i < m_errors.Count(); i++)
+            {
+                m_errors[i] = compilationDetails[i + tokenSize + symbolSize + 2];
+            }
+           
+            dataGridView1.Rows.Clear();
+            dataGridView1.Refresh();
+            dataGridView2.Rows.Clear();
+            dataGridView2.Refresh();
+            textBox2.Text = m_compilationState + System.Environment.NewLine;
         }
 
         private void OptionsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -295,14 +311,7 @@ namespace CompilerUI
 
         private void VScrollBar1_Scroll(object sender, ScrollEventArgs e)
         {
-            // Create and initialize a VScrollBar.
-            VScrollBar vScrollBar1 = new VScrollBar();
 
-            // Dock the scroll bar to the right side of the form.
-            vScrollBar1.Dock = DockStyle.Right;
-
-            // Add the scroll bar to the form.
-            Controls.Add(vScrollBar1);
         }
 
         private void DataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)

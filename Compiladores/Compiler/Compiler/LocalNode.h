@@ -33,5 +33,6 @@ namespace Compiler
 		
 		void				SetNextNode(LocalNode* localNode);
 		LocalNode*			GetNextNode();
+		bool				HasNextNode();
 	};
 };

@@ -20,8 +20,8 @@ namespace Compiler
 	#define _INVALID_FLOAT			"Invalid float"				
 	#define _LEX_INVALID_CHAR		"Invalid character"			
 
-	#define Global_Scope			"global"
-	#define Main_Scope				"main"
+	#define Global_Scope			"global_scope"
+	#define Main_Scope				"main_function"
 
 	struct VarData
 	{
