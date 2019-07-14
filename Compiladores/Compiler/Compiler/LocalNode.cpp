@@ -83,11 +83,11 @@ Compiler::LocalNode* Compiler::LocalNode::GetNextNode()
 
 bool Compiler::LocalNode::HasNextNode()
 {
-	if (m_nextNode)
+	if (!m_nextNode)
 	{
-		return  true;
+		return false;
 	}
-	return false;
+	return true;
 }
 
 void Compiler::LocalNode::SetNextNode(LocalNode* localNode)

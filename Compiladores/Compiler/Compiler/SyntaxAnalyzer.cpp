@@ -10,7 +10,6 @@ Compiler::SymbolTable* Compiler::SyntaxAnalyzer::GetSymbolTable()
 
 void Compiler::SyntaxAnalyzer::AddState(SyntaxState* state)
 {
-	m_lexic->GetNextToken();
 	m_states.push(state);
 }
 
@@ -39,18 +38,12 @@ bool Compiler::SyntaxAnalyzer::GetMainStatus()
 
 void Compiler::SyntaxAnalyzer::CheckSyntax()
 {
-	if (m_states.empty())
-	{
-		m_states.push(new SyntaxBegin(m_lexic, this));
-	}
+	m_states.push(new SyntaxBegin(m_lexic, this));
 
-	while (m_lexic->GetTokenIteratior() < m_lexic->GetNumTokens() && m_errorModule->GetErrorNumber() < _MAX_ERRORS)
-	{
+	while (m_lexic->GetTokenIteratior() < m_lexic->GetNumTokens() && m_errorModule->GetErrorNumber() < _MAX_ERRORS) {
 		m_states.top()->CheckSyntax();
 	}
-
-	if (m_errorModule->GetErrorNumber() < _MAX_ERRORS)
-	{
+	if (m_errorModule->GetErrorNumber() < _MAX_ERRORS) {
 		m_states.top()->CheckSyntax();
 	}
 }

@@ -18,6 +18,3 @@ C:\Users\funka\Desktop\Compiladores\CompilerUI\CompilerUI\obj\Debug\CompilerUI.c
 C:\Users\funka\Desktop\Compiladores\CompilerUI\CompilerUI\obj\Debug\CompilerUI.csproj.CoreCompileInputs.cache
 C:\Users\funka\Desktop\Compiladores\CompilerUI\CompilerUI\obj\Debug\CompilerUI.exe
 C:\Users\funka\Desktop\Compiladores\CompilerUI\CompilerUI\obj\Debug\CompilerUI.pdb
-C:\Users\funka\Desktop\Compiladores\CompilerUI\build\CompilerUI.exe.config
-C:\Users\funka\Desktop\Compiladores\CompilerUI\build\CompilerUI.exe
-C:\Users\funka\Desktop\Compiladores\CompilerUI\build\CompilerUI.pdb

@@ -8,22 +8,18 @@ namespace Compiler
 
 	class SyntaxFunction : public SyntaxState
 	{
-		bool							m_isParameterReached;
-		bool							m_isBlockReached;
-		std::string						m_eofMessage;
+		bool							m_isReturning;
 
-		SymbolCategory					m_category;
-		std::string						m_returnValue;
-		std::string						m_name;
+		SymbolCategory		m_category;
+		std::string				m_returnValue;
+		std::string				m_name;
 		int								m_line;
 
 	public:
 
-		bool							EofError(std::string description);
-		bool							IsEof();
-
+		void							EofError(std::string description);
 		void							CheckSyntax();
-		void							ExitState();
+		void							PanicMode();
 		
 		SyntaxFunction(LexAnalyzer* lexic, SyntaxAnalyzer* syntax);
 		~SyntaxFunction();

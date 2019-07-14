@@ -8,9 +8,9 @@ D:\UAD\6\Compiladores\CompilerUI\CompilerUI\obj\x86\Debug\CompilerUI.exe
 D:\UAD\6\Compiladores\CompilerUI\CompilerUI\obj\x86\Debug\CompilerUI.pdb
 D:\UAD\6\Compiladores\CompilerUI\CompilerUI\obj\x86\Debug\CompilerUI.CompilerUI.resources
 D:\UAD\6\Compiladores\CompilerUI\CompilerUI\obj\x86\Debug\CompilerUI.csprojAssemblyReference.cache
-C:\Users\funka\Desktop\Compiladores\CompilerUI\build\x86\Exe\Debug\CompilerUI.exe.config
-C:\Users\funka\Desktop\Compiladores\CompilerUI\build\x86\Exe\Debug\CompilerUI.exe
-C:\Users\funka\Desktop\Compiladores\CompilerUI\build\x86\Exe\Debug\CompilerUI.pdb
+C:\Users\funka\Desktop\Compiladores\CompilerUI\CompilerUI\bin\x86\Debug\CompilerUI.exe.config
+C:\Users\funka\Desktop\Compiladores\CompilerUI\CompilerUI\bin\x86\Debug\CompilerUI.exe
+C:\Users\funka\Desktop\Compiladores\CompilerUI\CompilerUI\bin\x86\Debug\CompilerUI.pdb
 C:\Users\funka\Desktop\Compiladores\CompilerUI\CompilerUI\obj\x86\Debug\CompilerUI.csprojAssemblyReference.cache
 C:\Users\funka\Desktop\Compiladores\CompilerUI\CompilerUI\obj\x86\Debug\CompilerUI.CompilerUI.resources
 C:\Users\funka\Desktop\Compiladores\CompilerUI\CompilerUI\obj\x86\Debug\CompilerUI.Properties.Resources.resources
@@ -18,3 +18,13 @@ C:\Users\funka\Desktop\Compiladores\CompilerUI\CompilerUI\obj\x86\Debug\Compiler
 C:\Users\funka\Desktop\Compiladores\CompilerUI\CompilerUI\obj\x86\Debug\CompilerUI.csproj.CoreCompileInputs.cache
 C:\Users\funka\Desktop\Compiladores\CompilerUI\CompilerUI\obj\x86\Debug\CompilerUI.exe
 C:\Users\funka\Desktop\Compiladores\CompilerUI\CompilerUI\obj\x86\Debug\CompilerUI.pdb
+C:\Users\funka\Desktop\Compiladores - copia\CompilerUI\CompilerUI\bin\x86\Debug\CompilerUI.exe.config
+C:\Users\funka\Desktop\Compiladores - copia\CompilerUI\CompilerUI\bin\x86\Debug\CompilerUI.exe
+C:\Users\funka\Desktop\Compiladores - copia\CompilerUI\CompilerUI\bin\x86\Debug\CompilerUI.pdb
+C:\Users\funka\Desktop\Compiladores - copia\CompilerUI\CompilerUI\obj\x86\Debug\CompilerUI.csprojAssemblyReference.cache
+C:\Users\funka\Desktop\Compiladores - copia\CompilerUI\CompilerUI\obj\x86\Debug\CompilerUI.CompilerUI.resources
+C:\Users\funka\Desktop\Compiladores - copia\CompilerUI\CompilerUI\obj\x86\Debug\CompilerUI.Properties.Resources.resources
+C:\Users\funka\Desktop\Compiladores - copia\CompilerUI\CompilerUI\obj\x86\Debug\CompilerUI.csproj.GenerateResource.cache
+C:\Users\funka\Desktop\Compiladores - copia\CompilerUI\CompilerUI\obj\x86\Debug\CompilerUI.csproj.CoreCompileInputs.cache
+C:\Users\funka\Desktop\Compiladores - copia\CompilerUI\CompilerUI\obj\x86\Debug\CompilerUI.exe
+C:\Users\funka\Desktop\Compiladores - copia\CompilerUI\CompilerUI\obj\x86\Debug\CompilerUI.pdb

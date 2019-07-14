@@ -164,7 +164,8 @@ void Compiler::SymbolTable::AddSymbol(int line, std::string name, SymbolCategory
 	else
 	{
 		m_errorModule->AddError(ErrorPhase::Syntactic, line, msclr::interop::marshal_as<String^>(
-		"Error: Variable/Function already defined in the same scope"), msclr::interop::marshal_as<String^>("Symbol: " + name));
+		"Error: Variable/Function already defined in the same scope"), 
+		msclr::interop::marshal_as<String^>("Symbol: '" + name + "' - Scope: '" + scope + "'"));
 	}
 }
 
@@ -190,7 +191,7 @@ bool Compiler::SymbolTable::SymbolExists(std::string symbol, SymbolCategory cate
 
 			while (lNode != nullptr)
 			{
-				if (lNode->GetCategory() == category && !(lNode->GetScope().compare(function)))
+				if (lNode->GetCategory() == category && lNode->GetScope() == function)
 				{
 					return true;
 				}

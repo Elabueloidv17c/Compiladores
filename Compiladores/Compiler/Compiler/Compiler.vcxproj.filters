@@ -117,6 +117,39 @@
     <ClInclude Include="ErrorModule.h">
       <Filter>Archivos de encabezado\Lexic</Filter>
     </ClInclude>
+    <ClInclude Include="SyntaxBlock.h">
+      <Filter>Archivos de encabezado\Syntactic</Filter>
+    </ClInclude>
+    <ClInclude Include="SyntaxLogicExpr.h">
+      <Filter>Archivos de encabezado\Syntactic</Filter>
+    </ClInclude>
+    <ClInclude Include="SyntaxReturn.h">
+      <Filter>Archivos de encabezado\Syntactic</Filter>
+    </ClInclude>
+    <ClInclude Include="SyntaxAssign.h">
+      <Filter>Archivos de encabezado\Syntactic</Filter>
+    </ClInclude>
+    <ClInclude Include="SyntaxWhile.h">
+      <Filter>Archivos de encabezado\Syntactic</Filter>
+    </ClInclude>
+    <ClInclude Include="SyntaxIf.h">
+      <Filter>Archivos de encabezado\Syntactic</Filter>
+    </ClInclude>
+    <ClInclude Include="SyntaxFor.h">
+      <Filter>Archivos de encabezado\Syntactic</Filter>
+    </ClInclude>
+    <ClInclude Include="SyntaxRead.h">
+      <Filter>Archivos de encabezado\Syntactic</Filter>
+    </ClInclude>
+    <ClInclude Include="SyntaxFunctionCall.h">
+      <Filter>Archivos de encabezado\Syntactic</Filter>
+    </ClInclude>
+    <ClInclude Include="SyntaxLogicExprList.h">
+      <Filter>Archivos de encabezado\Syntactic</Filter>
+    </ClInclude>
+    <ClInclude Include="SyntaxPrint.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Compiler.cpp">
@@ -199,6 +232,39 @@
     </ClCompile>
     <ClCompile Include="ErrorModule.cpp">
       <Filter>Archivos de origen\Lexic</Filter>
+    </ClCompile>
+    <ClCompile Include="SyntaxBlock.cpp">
+      <Filter>Archivos de origen\Syntactic</Filter>
+    </ClCompile>
+    <ClCompile Include="SyntaxLogicExpr.cpp">
+      <Filter>Archivos de origen\Syntactic</Filter>
+    </ClCompile>
+    <ClCompile Include="SyntaxReturn.cpp">
+      <Filter>Archivos de origen\Syntactic</Filter>
+    </ClCompile>
+    <ClCompile Include="SyntaxAssign.cpp">
+      <Filter>Archivos de origen\Syntactic</Filter>
+    </ClCompile>
+    <ClCompile Include="SyntaxWhile.cpp">
+      <Filter>Archivos de origen\Syntactic</Filter>
+    </ClCompile>
+    <ClCompile Include="SyntaxIf.cpp">
+      <Filter>Archivos de origen\Syntactic</Filter>
+    </ClCompile>
+    <ClCompile Include="SyntaxFor.cpp">
+      <Filter>Archivos de origen\Syntactic</Filter>
+    </ClCompile>
+    <ClCompile Include="SyntaxRead.cpp">
+      <Filter>Archivos de origen\Syntactic</Filter>
+    </ClCompile>
+    <ClCompile Include="SyntaxFunctionCall.cpp">
+      <Filter>Archivos de origen\Syntactic</Filter>
+    </ClCompile>
+    <ClCompile Include="SyntaxLogicExprList.cpp">
+      <Filter>Archivos de origen\Syntactic</Filter>
+    </ClCompile>
+    <ClCompile Include="SyntaxPrint.cpp">
+      <Filter>Archivos de origen\Syntactic</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

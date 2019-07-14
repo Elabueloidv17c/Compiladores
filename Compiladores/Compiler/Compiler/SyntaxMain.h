@@ -5,14 +5,11 @@ namespace Compiler
 {
 	class SyntaxMain : public SyntaxState
 	{
-		bool							m_isBlockReached;
-
 	public:
 
-		bool							EofError(std::string description);
+		void							EofError(std::string description);
 		void							CheckSyntax();
-		void							ExitState();
-		bool							IsEof();
+		void							PanicMode();
 
 		SyntaxMain(LexAnalyzer* lexic, SyntaxAnalyzer* syntax);
 		~SyntaxMain();

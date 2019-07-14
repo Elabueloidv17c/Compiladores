@@ -9,19 +9,25 @@
 #include <stack>
 #include <map>
 
+/*
+Function call: 
+
+Set logic expression boolean to  return from function call and keep reading
+*/
+
 namespace Compiler
 {
-	#define _MAX_ERRORS				30							
-	#define _LEX_INVALID_ID			"Invalid identifier"		
+	#define _MAX_ERRORS						30							
+	#define _LEX_INVALID_ID				"Invalid identifier"		
 	#define _STRING_NOT_CLOSED		"String not closed"
 	#define _COMMENT_NOT_CLOSED		"Comment not closed"
 
-	#define _INVALID_OP_LOG			"Invalid logic operator"	
-	#define _INVALID_FLOAT			"Invalid float"				
-	#define _LEX_INVALID_CHAR		"Invalid character"			
+	#define _INVALID_OP_LOG				"Invalid logic operator"	
+	#define _INVALID_FLOAT				"Invalid float"				
+	#define _LEX_INVALID_CHAR			"Invalid character"			
 
-	#define Global_Scope			"global_scope"
-	#define Main_Scope				"main_function"
+	#define Global_Scope					"global_scope"
+	#define Main_Scope						"main_function"
 
 	struct VarData
 	{

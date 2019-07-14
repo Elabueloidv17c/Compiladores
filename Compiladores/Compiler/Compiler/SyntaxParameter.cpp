@@ -6,25 +6,30 @@
 
 void Compiler::SyntaxParameter::CheckSyntax()
 {
-	if (EofError("Error: Expected ID or ')'"))
-	{
+	Token* currentToken = m_lexAnalyzer->GetNextToken();
+
+	if (!currentToken) {
+		EofError("Error: Expected ID or ')'");
 		return;
 	}
 
-	if (!m_lexAnalyzer->PeekCurrentToken()->GetLexem().compare(")"))
-	{
+	if (!currentToken->GetLexem().compare(")")) {
+		if (m_isRepeating) {
+			m_lexAnalyzer->AddError(ErrorPhase::Syntactic, m_lexAnalyzer->PeekCurrentToken()->GetLine(),
+			msclr::interop::marshal_as<String^>("Error: Expected 'ID'"),
+			msclr::interop::marshal_as<String^>("Got-> '" + m_lexAnalyzer->PeekCurrentToken()->GetLexem() + "'"));
+		}
+
 		//Parameter block is empty
-		ExitState();
+		m_lexAnalyzer->GetNextToken();
+		m_syntaxAnalyzer->EraseState();
 		return;
 	}
 
 	bool isIDFound = false;
-	Token* currentToken = m_lexAnalyzer->PeekCurrentToken();
 
-	while (!IsEof())
-	{
-		if (currentToken->GetType() == TokenType::ID)
-		{
+	while (currentToken) {
+		if (currentToken->GetType() == TokenType::ID) {
 			isIDFound = true;
 
 			//Add the current name to the vector
@@ -32,215 +37,186 @@ void Compiler::SyntaxParameter::CheckSyntax()
 			data.name = currentToken->GetLexem();
 			data.line = currentToken->GetLine();
 
-			m_lexAnalyzer->GetNextToken();
-			if (EofError("Error: Expected '[', ':' or ','"))
-			{
+			currentToken = m_lexAnalyzer->GetNextToken();
+			if (!currentToken) {
+				EofError("Error: Expected '[', ':' or ','");
 				return;
 			}
-			currentToken = m_lexAnalyzer->PeekCurrentToken();
-
-			if (currentToken->GetLexem() == "[")
-			{
-				m_lexAnalyzer->GetNextToken();
-				if (EofError("Error: Expected positive int"))
-				{
+			if (currentToken->GetLexem() == "[") {
+				currentToken = m_lexAnalyzer->GetNextToken();
+				if (!currentToken) {
+					EofError("Error: Expected positive int");
 					return;
 				}
-				currentToken = m_lexAnalyzer->PeekCurrentToken();
 
-				if (currentToken->GetType() == TokenType::Int && std::atoi(&currentToken->GetLexem()[0]) >= 0)
-				{
+				if (currentToken->GetType() == TokenType::Int && std::atoi(&currentToken->GetLexem()[0]) >= 0) {
 					data.length = std::atoi(&currentToken->GetLexem()[0]);
 
-					m_lexAnalyzer->GetNextToken();
-					if (EofError("Error: Expected ']'"))
-					{
+					currentToken = m_lexAnalyzer->GetNextToken();
+					if (!currentToken) {
+						EofError("Error: Expected ']'");
 						return;
 					}
-					currentToken = m_lexAnalyzer->PeekCurrentToken();
-
-					if (currentToken->GetLexem() != "]")
-					{
-						std::string token = "Got-> '" + m_lexAnalyzer->PeekCurrentToken()->GetLexem() + "'";
+					if (currentToken->GetLexem() != "]") {
 						m_lexAnalyzer->AddError(ErrorPhase::Syntactic, m_lexAnalyzer->PeekCurrentToken()->GetLine(),
-						msclr::interop::marshal_as<String^>("Error: Expected ']'"), msclr::interop::marshal_as<String^>(token));
+							msclr::interop::marshal_as<String^>("Error: Expected ']'"),
+							msclr::interop::marshal_as<String^>("Got-> '" + m_lexAnalyzer->PeekCurrentToken()->GetLexem() + "'"));
 
-						ExitState();
+						PanicMode();
 						return;
 					}
 
-					m_lexAnalyzer->GetNextToken();
-					if (EofError("Error: Expected ID or ','"))
-					{
+					currentToken = m_lexAnalyzer->GetNextToken();
+					if (!currentToken) {
+						EofError("Error: Expected ID or ','");
 						return;
 					}
-					currentToken = m_lexAnalyzer->PeekCurrentToken();
 				}
-			}
-			else
-			{
-				data.length = 0;
+				else {
+					m_lexAnalyzer->AddError(ErrorPhase::Syntactic, m_lexAnalyzer->PeekCurrentToken()->GetLine(),
+						msclr::interop::marshal_as<String^>("Error: Expected positive int"),
+						msclr::interop::marshal_as<String^>("Got-> '" + m_lexAnalyzer->PeekCurrentToken()->GetLexem() + "'"));
 
-				if (EofError("Error: Expected '[', ':' or ','"))
-				{
+					PanicMode();
 					return;
 				}
+
+			}
+			else {
+				data.length = 0;
 			}
 			m_names.push_back(data);
 
-			if (currentToken->GetLexem() == ":")
-			{
+			if (currentToken->GetLexem() == ":") {
+				//We finished reading the id's, it's time to read the type
 				break;
 			}
-			if (currentToken->GetLexem() == ",")
-			{
+			if (currentToken->GetLexem() == ",") {
 				//We get a "," advance to the next token to look for other variable
-				m_lexAnalyzer->GetNextToken();
-				if (EofError("Error: ID"))
-				{
+				currentToken = m_lexAnalyzer->GetNextToken();
+				if (!currentToken) {
+					EofError("Error: ID");
 					return;
 				}
-				currentToken = m_lexAnalyzer->PeekCurrentToken();
 			}
-			else
-			{
-				std::string token = "Got-> '" + m_lexAnalyzer->PeekCurrentToken()->GetLexem() + "'";
+			else {
 				m_lexAnalyzer->AddError(ErrorPhase::Syntactic, m_lexAnalyzer->PeekPrevToken()->GetLine(),
-				msclr::interop::marshal_as<String^>("Error: Expected '[', ':' or ','"), msclr::interop::marshal_as<String^>(token));
+				msclr::interop::marshal_as<String^>("Error: Expected '[', ':' or ','"),
+				msclr::interop::marshal_as<String^>("Got-> '" + m_lexAnalyzer->PeekCurrentToken()->GetLexem() + "'"));
 
-				ExitState();
+				PanicMode();
 				return;
 			}
 		}
-		else
-		{
-			std::string token = "Got-> '" + m_lexAnalyzer->PeekCurrentToken()->GetLexem() + "'";
+		else {
 			m_lexAnalyzer->AddError(ErrorPhase::Syntactic, m_lexAnalyzer->PeekCurrentToken()->GetLine(),
-			msclr::interop::marshal_as<String^>("Error: Expected ID"), msclr::interop::marshal_as<String^>(token));
+				msclr::interop::marshal_as<String^>("Error: Expected ID"),
+				msclr::interop::marshal_as<String^>("Got-> '" + m_lexAnalyzer->PeekCurrentToken()->GetLexem() + "'"));
 
-			ExitState();
+			PanicMode();
 			return;
 		}
 	}
-
-	if (EofError("Error: Expected ':'"))
-	{
+	
+	if (!currentToken) {
+		EofError("Error: Expected ':'");
 		return;
 	}
-	if (!isIDFound)
-	{
-		std::string token = "Got-> '" + m_lexAnalyzer->PeekCurrentToken()->GetLexem() + "'";
+	if (!isIDFound) {
 		m_lexAnalyzer->AddError(ErrorPhase::Syntactic, m_lexAnalyzer->PeekCurrentToken()->GetLine(),
-		msclr::interop::marshal_as<String^>("Error: Expected ID"), msclr::interop::marshal_as<String^>(token));
+		msclr::interop::marshal_as<String^>("Error: Expected ID"),
+		msclr::interop::marshal_as<String^>("Got-> '" + m_lexAnalyzer->PeekCurrentToken()->GetLexem() + "'"));
 
-		ExitState();
+		PanicMode();
 		return;
 	}
 
 	//Add All names to the Symbol Table
-	m_lexAnalyzer->GetNextToken();
-	if (EofError("Error: Expected DataType"))
-	{
+	currentToken = m_lexAnalyzer->GetNextToken();
+	if (!currentToken) {
+		EofError("Error: Expected DataType");
 		return;
 	}
-	currentToken = m_lexAnalyzer->PeekCurrentToken();
 
-	if (currentToken->GetLexem() == "int" || currentToken->GetLexem() == "float"
-	|| currentToken->GetLexem() == "bool" || currentToken->GetLexem() == "string")
-	{
+	if (currentToken->GetLexem() == "int" || currentToken->GetLexem() == "float" || currentToken->GetLexem() == "bool"
+	|| currentToken->GetLexem() == "string") {
+
 		m_dataType = currentToken->GetLexem();
 
-		m_lexAnalyzer->GetNextToken();
-		if (EofError("Error: Expected ')'"))
-		{
+		for (int i = 0; i < m_names.size(); i++) {
+			m_syntaxAnalyzer->GetSymbolTable()->AddSymbol(m_names[i].line, m_names[i].name, m_category,
+			m_names[i].length, m_dataType, m_function);
+		}
+
+		currentToken = m_lexAnalyzer->GetNextToken();
+		if (!currentToken) {
+			EofError("Error: Expected ';' or ')'");
 			return;
 		}
-		currentToken = m_lexAnalyzer->PeekCurrentToken();
 
-		if (currentToken->GetLexem() != ")")
-		{
-			std::string token = "Got-> '" + m_lexAnalyzer->PeekCurrentToken()->GetLexem() + "'";
+		if (currentToken->GetLexem() == ";") {
+			m_isRepeating = true;
+			m_names.clear();
+			CheckSyntax();
+		}
+		else if(currentToken->GetLexem() == ")") {
+			m_lexAnalyzer->GetNextToken();
+			m_syntaxAnalyzer->EraseState();
+			return;
+		}
+		else {
 			m_lexAnalyzer->AddError(ErrorPhase::Syntactic, m_lexAnalyzer->PeekCurrentToken()->GetLine(),
-			msclr::interop::marshal_as<String^>("Error: Expected ')'"), msclr::interop::marshal_as<String^>(token));
+			msclr::interop::marshal_as<String^>("Error: Expected ')' or ';'"),
+			msclr::interop::marshal_as<String^>("Got-> '" + m_lexAnalyzer->PeekCurrentToken()->GetLexem() + "'"));
 
-			ExitState();
+			PanicMode();
 			return;
 		}
-
-		for (int i = 0; i < m_names.size(); i++)
-		{
-			m_syntaxAnalyzer->GetSymbolTable()->AddSymbol(m_names[i].line, m_names[i].name, m_category, m_names[i].length, m_dataType, m_function);
-		}
-
-		ExitState();
 	}
-	else
-	{
-		std::string token = "Got-> '" + m_lexAnalyzer->PeekCurrentToken()->GetLexem() + "'";
+	else {
 		m_lexAnalyzer->AddError(ErrorPhase::Syntactic, m_lexAnalyzer->PeekCurrentToken()->GetLine(),
-		msclr::interop::marshal_as<String^>("Error: Invalid Datatype"), msclr::interop::marshal_as<String^>(token));
+		msclr::interop::marshal_as<String^>("Error: Invalid Datatype"), 
+		msclr::interop::marshal_as<String^>("Got-> '" + m_lexAnalyzer->PeekCurrentToken()->GetLexem() + "'"));
 
-		ExitState();
+		PanicMode();
 		return;
 	}
 }
 
-void Compiler::SyntaxParameter::ExitState()
+void Compiler::SyntaxParameter::PanicMode()
 {
-	Token* currentToken;
+	Token* currentToken = m_lexAnalyzer->PeekCurrentToken();
 
-	if (EofError("Error: Expected ')'"))
-	{
+	if (!currentToken) {
+		EofError("Error: Expected ')' or ';'");
 		return;
 	}
-	currentToken = m_lexAnalyzer->PeekCurrentToken();
-
-	//Continue until the current expresion ends and go back to begin state
-	while (!IsEof() && currentToken->GetLexem() != ")" && currentToken->GetLexem() != "var")
-	{
+	while (currentToken && currentToken->GetLexem() != ")") {
+			currentToken = m_lexAnalyzer->GetNextToken();
+	}
+	if (!currentToken) {
+		EofError("Error: Expected ')'");
+		return;
+	}
+	if (currentToken && currentToken->GetLexem() == ")") {
 		m_lexAnalyzer->GetNextToken();
 	}
-	if (!IsEof())
-	{
-		if (currentToken->GetLexem() == ")")
-		{
-			m_lexAnalyzer->GetNextToken();
-		}
-	}
+	m_syntaxAnalyzer->EraseState();
+}
+
+void Compiler::SyntaxParameter::EofError(std::string description) {
+	m_lexAnalyzer->AddError(ErrorPhase::Syntactic, m_lexAnalyzer->PeekPrevToken()->GetLine(),
+	msclr::interop::marshal_as<String^>(description), msclr::interop::marshal_as<String^>("Got-> 'eof'"));
 
 	m_syntaxAnalyzer->EraseState();
 }
 
-bool Compiler::SyntaxParameter::EofError(std::string description)
-{
-	if (IsEof())
-	{
-		m_lexAnalyzer->AddError(ErrorPhase::Syntactic, m_lexAnalyzer->PeekPrevToken()->GetLine(),
-			msclr::interop::marshal_as<String^>(description), msclr::interop::marshal_as<String^>("Got-> 'eof'"));
-
-		m_syntaxAnalyzer->EraseState();
-		return true;
-	}
-
-	return false;
-}
-
-bool Compiler::SyntaxParameter::IsEof()
-{
-	if (m_lexAnalyzer->GetTokenIteratior() == m_lexAnalyzer->GetNumTokens())
-	{
-		return true;
-	}
-
-	return false;
-}
-
-Compiler::SyntaxParameter::SyntaxParameter(LexAnalyzer* lexic, SyntaxAnalyzer* syntax, std::string function) : SyntaxState(lexic, syntax)
-{
+Compiler::SyntaxParameter::SyntaxParameter(LexAnalyzer* lexic, SyntaxAnalyzer* syntax, std::string function) 
+: SyntaxState(lexic, syntax) {
+	m_isRepeating = false;
 	m_function = function;
 	m_category = SymbolCategory::Parameter;
 }
 
-Compiler::SyntaxParameter::~SyntaxParameter()
-{
+Compiler::SyntaxParameter::~SyntaxParameter() {
 }

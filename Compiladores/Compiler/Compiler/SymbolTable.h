@@ -10,7 +10,7 @@ namespace Compiler
 	private:
 
 		std::map<std::string, GlobalNode*>			m_symbols;
-		msclr::gcroot<ErrorModule^>					m_errorModule;
+		msclr::gcroot<ErrorModule^>							m_errorModule;
 
 	public:
 

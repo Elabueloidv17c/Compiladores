@@ -225,13 +225,13 @@ namespace CompilerUI
             String proccesFullPath = Process.GetCurrentProcess().MainModule.FileName;
             DirectoryInfo Up;
 
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 6; i++)
             {
                 Up = Directory.GetParent(proccesFullPath);
                 proccesFullPath = Up.FullName;
             }
 
-            m_dllPath = proccesFullPath + "\\" + dllArchitecture + "\\Exe\\" + configuration + "\\" + dllFilename;
+            m_dllPath = proccesFullPath + "\\CompilerUI\\build\\" + dllArchitecture + "\\Exe\\" + configuration + "\\" + dllFilename;
 
             var DLL = Assembly.UnsafeLoadFrom(m_dllPath);
 

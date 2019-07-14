@@ -165,12 +165,23 @@
     <ClInclude Include="StringState.h" />
     <ClInclude Include="SymbolTable.h" />
     <ClInclude Include="SyntaxAnalyzer.h" />
+    <ClInclude Include="SyntaxAssign.h" />
     <ClInclude Include="SyntaxBegin.h" />
+    <ClInclude Include="SyntaxBlock.h" />
+    <ClInclude Include="SyntaxFor.h" />
     <ClInclude Include="SyntaxFunction.h" />
+    <ClInclude Include="SyntaxFunctionCall.h" />
+    <ClInclude Include="SyntaxIf.h" />
+    <ClInclude Include="SyntaxLogicExpr.h" />
+    <ClInclude Include="SyntaxLogicExprList.h" />
     <ClInclude Include="SyntaxMain.h" />
     <ClInclude Include="SyntaxParameter.h" />
+    <ClInclude Include="SyntaxPrint.h" />
+    <ClInclude Include="SyntaxRead.h" />
+    <ClInclude Include="SyntaxReturn.h" />
     <ClInclude Include="SyntaxState.h" />
     <ClInclude Include="SyntaxVar.h" />
+    <ClInclude Include="SyntaxWhile.h" />
     <ClInclude Include="Token.h" />
   </ItemGroup>
   <ItemGroup>
@@ -199,12 +210,23 @@
     <ClCompile Include="StringState.cpp" />
     <ClCompile Include="SymbolTable.cpp" />
     <ClCompile Include="SyntaxAnalyzer.cpp" />
+    <ClCompile Include="SyntaxAssign.cpp" />
     <ClCompile Include="SyntaxBegin.cpp" />
+    <ClCompile Include="SyntaxBlock.cpp" />
+    <ClCompile Include="SyntaxFor.cpp" />
     <ClCompile Include="SyntaxFunction.cpp" />
+    <ClCompile Include="SyntaxFunctionCall.cpp" />
+    <ClCompile Include="SyntaxIf.cpp" />
+    <ClCompile Include="SyntaxLogicExpr.cpp" />
+    <ClCompile Include="SyntaxLogicExprList.cpp" />
     <ClCompile Include="SyntaxMain.cpp" />
     <ClCompile Include="SyntaxParameter.cpp" />
+    <ClCompile Include="SyntaxPrint.cpp" />
+    <ClCompile Include="SyntaxRead.cpp" />
+    <ClCompile Include="SyntaxReturn.cpp" />
     <ClCompile Include="SyntaxState.cpp" />
     <ClCompile Include="SyntaxVar.cpp" />
+    <ClCompile Include="SyntaxWhile.cpp" />
     <ClCompile Include="Token.cpp" />
   </ItemGroup>
   <ItemGroup>

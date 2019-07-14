@@ -15,7 +15,6 @@ namespace Compiler
 		bool GetMainStatus();
 		void CheckSyntax();
 		void PanicMode();
-		bool IsEof();
 
 		SyntaxBegin(LexAnalyzer* lexic, SyntaxAnalyzer* syntax);
 		~SyntaxBegin();

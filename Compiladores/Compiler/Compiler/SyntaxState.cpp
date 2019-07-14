@@ -7,11 +7,18 @@ Compiler::SyntaxState::SyntaxState(LexAnalyzer* lexic, SyntaxAnalyzer* syntax)
 	m_syntaxAnalyzer = syntax;
 }
 
-Compiler::SyntaxState::~SyntaxState()
-{
+Compiler::SyntaxState::~SyntaxState() {
+
 }
 
-void Compiler::SyntaxState::CheckSyntax()
-{
+void Compiler::SyntaxState::CheckSyntax() {
+
+}
+
+void Compiler::SyntaxState::EofError(std::string description) {
+
+}
+
+void Compiler::SyntaxState::PanicMode() {
 
 }

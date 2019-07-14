@@ -10,16 +10,15 @@ namespace Compiler
 	class SyntaxVar : public SyntaxState
 	{
 		std::vector <VarData>			m_names;
-		SymbolCategory					m_category;
-		std::string						m_dataType;
-		std::string						m_scope;
+		SymbolCategory						m_category;
+		std::string								m_dataType;
+		std::string								m_scope;
 
 	public:
 
-		bool							EofError(std::string description);
-		bool							IsEof();
+		void							EofError(std::string description);
 		void							CheckSyntax();
-		void							ExitState();
+		void							PanicMode();
 		
 		SyntaxVar(LexAnalyzer* lexic, SyntaxAnalyzer* syntax, std::string scope);
 		~SyntaxVar();

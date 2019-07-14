@@ -196,37 +196,67 @@ std::vector<Compiler::Token>* Compiler::LexAnalyzer::GetTokens()
 
 Compiler::Token* Compiler::LexAnalyzer::PeekTokenAt(int index)
 {
+	if (index >= m_tokens->size())
+	{
+		return nullptr;
+	}
+
 	return &m_tokens[0][index];
 }
 
 Compiler::Token* Compiler::LexAnalyzer::PeekNextToken()
 {
+	if ((m_currentToken + 1) >= m_tokens->size())
+	{
+		return nullptr;
+	}
 	return &m_tokens[0][m_currentToken + 1];
 }
 
 Compiler::Token* Compiler::LexAnalyzer::PeekPrevToken()
 {
+	if ((m_currentToken - 1) < 0)
+	{
+		return nullptr;
+	}
 	return &m_tokens[0][m_currentToken - 1];
 }
 
 Compiler::Token* Compiler::LexAnalyzer::PeekCurrentToken()
 {
+	if (m_currentToken >= m_tokens->size())
+	{
+		return nullptr;
+	}
 	return &m_tokens[0][m_currentToken];
 }
 
 Compiler::Token* Compiler::LexAnalyzer::GetTokenAt(int index)
 {
+	if ((index + 1) >= m_tokens->size() || ((index - 1) < 0))
+	{
+		return nullptr;
+	}
 	m_currentToken = index;
 	return &m_tokens[0][m_currentToken];
 }
 
 Compiler::Token* Compiler::LexAnalyzer::GetNextToken()
 {
-	return &m_tokens[0][m_currentToken++];
+	if ((m_currentToken + 1) >= m_tokens->size())
+	{
+		++m_currentToken;
+		return nullptr;
+	}
+	return &m_tokens[0][++m_currentToken];
 }
 
 Compiler::Token* Compiler::LexAnalyzer::GetPrevToken()
 {
+	if ((m_currentToken - 1) < 0)
+	{
+		return nullptr;
+	}
 	return &m_tokens[0][--m_currentToken];
 }
 
